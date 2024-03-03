@@ -418,25 +418,195 @@
 // PrintSquares(15);
 
 
-void ZeroEvenElements(int[] arr)
+// void ZeroEvenElements(int[] arr)
+// {
+//     for (int i = 0; i < arr.Length; i++)
+//     {
+//         if (arr[i] % 2 == 0)
+//         {
+//             arr[i] = 0;
+//         }
+//     }
+// }
+
+// void PrintArray(int[] arr)
+// {
+//     foreach (int e in arr)
+//     {
+//         Console.Write($"{e} ");
+//     }
+// }
+
+// int[] array = { 1, 2, 3, 4, 5 };
+// ZeroEvenElements(array);
+// PrintArray(array);
+
+// using System.Globalization;
+
+// int[,] matrix = new int[3, 5];
+
+// Random rnd = new Random();
+// for (int i =0; i < matrix.GetLength(0); i++)
+// {
+//     for (int j =0; j < matrix.GetLength(1); j++)
+//     {
+//         matrix[i, j] = rnd.Next(1, 11);
+//     }
+// }
+
+// for (int i =0; i < matrix.GetLength(0); i++)
+// {
+//     for (int j =0; j < matrix.GetLength(1); j++)
+//     {
+//         Console.Write($"{matrix[i, j]} ");
+//     }
+//     Console.WriteLine();
+// }
+
+// using System;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         Console.WriteLine("Введите целые числа. Для завершения программы введите 'q' или введите число, сумма цифр которого чётная.");
+
+//         while (true)
+//         {
+//             Console.Write("Введите число: ");
+//             string input = Console.ReadLine();
+
+//             if (input.ToLower() == "q")
+//             {
+//                 Console.WriteLine("Программа завершена.");
+//                 break;
+//             }
+
+//             int number;
+//             if (int.TryParse(input, out number))
+//             {
+//                 if (IsSumOfDigitsEven(number))
+//                 {
+//                     Console.WriteLine($"Сумма цифр числа {number} чётная. Программа завершена.");
+//                     break;
+//                 }
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Ошибка: Введено некорректное значение. Повторите попытку.");
+//             }
+//         }
+//     }
+
+//     static bool IsSumOfDigitsEven(int number)
+//     {
+//         int sum = 0;
+//         number = Math.Abs(number); 
+
+//         while (number > 0)
+//         {
+//             sum += number % 10;
+//             number /= 10;
+//         }
+
+//         return sum % 2 == 0;
+//     }
+// }
+
+
+// using System;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         int[] array = GenerateRandomArray(10); 
+
+//         Console.WriteLine("Массив случайных трёхзначных чисел:");
+//         PrintArray(array);
+
+//         int countEven = CountEvenNumbers(array); 
+
+//         Console.WriteLine($"Количество чётных чисел в массиве: {countEven}");
+//     }
+
+//     static int[] GenerateRandomArray(int size)
+//     {
+//         Random rnd = new Random();
+//         int[] array = new int[size];
+
+//         for (int i = 0; i < size; i++)
+//         {
+//             array[i] = rnd.Next(100, 1000); 
+//         }
+
+//         return array;
+//     }
+
+//     static void PrintArray(int[] array)
+//     {
+//         foreach (int num in array)
+//         {
+//             Console.Write(num + " ");
+//         }
+//         Console.WriteLine();
+//     }
+
+//     static int CountEvenNumbers(int[] array)
+//     {
+//         int count = 0;
+
+//         foreach (int num in array)
+//         {
+//             if (num % 2 == 0) 
+//             {
+//                 count++;
+//             }
+//         }
+
+//         return count;
+//     }
+// }
+
+using System;
+
+class Program
 {
-    for (int i = 0; i < arr.Length; i++)
+    static void Main()
     {
-        if (arr[i] % 2 == 0)
+        int[] array = { 1, 2, 3, 4, 5 };
+
+        Console.WriteLine("Исходный массив:");
+        PrintArray(array);
+
+        ReverseArray(array);
+
+        Console.WriteLine("\n Перевёрнутый массив:");
+        PrintArray(array);
+    }
+
+    static void ReverseArray(int[] array)
+    {
+        int left = 0;
+        int right = array.Length - 1;
+
+        while (left < right)
         {
-            arr[i] = 0;
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            left++;
+            right--;
         }
     }
-}
 
-void PrintArray(int[] arr)
-{
-    foreach (int e in arr)
+    static void PrintArray(int[] array)
     {
-        Console.Write($"{e} ");
+        foreach (int num in array)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
     }
 }
-
-int[] array = { 1, 2, 3, 4, 5 };
-ZeroEvenElements(array);
-PrintArray(array);
