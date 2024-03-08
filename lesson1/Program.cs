@@ -568,45 +568,559 @@
 //     }
 // }
 
+// using System;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         int[] array = { 1, 2, 3, 4, 5 };
+
+//         Console.WriteLine("Исходный массив:");
+//         PrintArray(array);
+
+//         ReverseArray(array);
+
+//         Console.WriteLine("\n Перевёрнутый массив:");
+//         PrintArray(array);
+//     }
+
+//     static void ReverseArray(int[] array)
+//     {
+//         int left = 0;
+//         int right = array.Length - 1;
+
+//         while (left < right)
+//         {
+//             int temp = array[left];
+//             array[left] = array[right];
+//             array[right] = temp;
+
+//             left++;
+//             right--;
+//         }
+//     }
+
+//     static void PrintArray(int[] array)
+//     {
+//         foreach (int num in array)
+//         {
+//             Console.Write(num + " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+
+// using System;
+
+// //Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
+// class UserInputToCompileForTest
+// { 
+// // Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+
+// // Поиск элемента по позициям
+//     public static int FindElementByPosition(int[,] array, int x, int y)
+//     {
+//         //Напишите свое решение здесь
+//         if (ValidatePosition(array, x, y))
+//         {
+
+//             return array[x - 1, y - 1];
+//         }
+//         else
+//         {
+//             return -1; // Возвращаем отрицательное значение для обозначения отсутствия элемента
+//         }
+//     }
+
+// // Проверка позиций на вхождение в массив
+//     public static bool ValidatePosition(int[,] numbers, int x, int y)
+//     {
+//         //Напишите свое решение здесь
+//         return x >= 1 && x <= numbers.GetLength(0) && y >= 1 && y <= numbers.GetLength(1);
+//     }
+
+//     public static void PrintResult(int[,] numbers, int x, int y)
+//     {
+//        if (ValidatePosition(numbers, x, y))
+//     {
+//         // Находим и выводим элемент, если он существует
+//         int element = FindElementByPosition(numbers, x, y);
+//         Console.WriteLine($"Элемент по позиции ({x},{y}): {element}");
+//     }
+//     else
+//     {
+//         // Сообщаем, если позиции выходят за пределы массива
+//         if (x < 1 || x > numbers.GetLength(0))
+//         {
+//             Console.WriteLine("Позиция по рядам выходит за пределы массива");
+//         }
+//         if (y < 1 || y > numbers.GetLength(1))
+//         {
+//             Console.WriteLine("Позиция по колонкам выходит за пределы массива");
+//         }
+//     }
+//     }
+// }
+
+
+// //Не удаляйте и не меняйте класс Answer!
+// class Answer
+// {
+//     public static void Main(string[] args)
+//     {   
+//         int[,] array;
+
+//         int x, y;
+
+//         if (args.Length >= 3)
+//         {
+//             // Предполагается, что строки разделены запятой и пробелом, а элементы внутри строк разделены пробелом
+//             string[] rows = args[0].Split(',');
+
+//             int rowCount = rows.Length;
+//             int colCount = rows[0].Trim().Split(' ').Length;
+
+//             array = new int[rowCount, colCount];
+
+//             for (int i = 0; i < rowCount; i++)
+//             {
+//                 string[] rowElements = rows[i].Trim().Split(' ');
+
+//                 for (int j = 0; j < colCount; j++)
+//                 {
+//                     if (int.TryParse(rowElements[j], out int result))
+//                     {
+//                         array[i, j] = result;
+//                     }
+//                     else
+//                     {
+//                         Console.WriteLine($"Error parsing element {rowElements[j]} to an integer.");
+//                         return;
+//                     }
+//                 }
+//             }
+
+//             // Парсинг x и y из аргументов
+//             if (int.TryParse(args[1], out x) && int.TryParse(args[2], out y))
+//             {
+//                 // Теперь у вас есть двумерный массив "array" и координаты x и y
+//                 UserInputToCompileForTest.PrintResult(array, x, y);
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Error parsing x or y to an integer.");
+//             }
+//         }
+//         else
+//         {
+
+//             // Если аргументов на входе нет, используем примерный массив
+//             array = new int[,]
+//             {
+//                 {1, 2, 3, 4},
+//                 {5, 6, 7, 8},
+//                 {9, 10, 11, 12}
+//             };
+//             x = 2;
+//             y = 2;
+
+//             UserInputToCompileForTest.PrintResult(array, x, y);
+
+//         }                
+//     }
+// }
+
+
+// using System;
+
+// //Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
+// class UserInputToCompileForTest
+// {
+//     // Печать массива
+//     public static void PrintArray(int[,] array)
+//     {
+//         for (int i = 0; i < array.GetLength(0); i++)
+//         {
+//             for (int j = 0; j < array.GetLength(1); j++)
+//             {
+//                 Console.Write($"{array[i, j]}\t");
+//             }
+//             Console.WriteLine(" ");
+//         }
+//     }
+
+//     // Обмен первой с последней строкой
+//     public static int[,] SwapFirstLastRows(int[,] array)
+//     {
+//         int n = array.GetLength(0) - 1;
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             int temp = array[0, j];
+//             array[0, j] = array[n, j];
+//             array[n, j] = temp;
+
+//         }
+//         return array;
+//     }
+
+//     // Обмен элементами массива
+//     public static void SwapItems(int[,] array, int i)
+//     {
+//         //Напишите свое решение здесь
+//           int n = array.GetLength(1);
+//     for (int j = 0; j < n / 2; j++)
+//     {
+//         int temp = array[i, j];
+//         array[i, j] = array[i, n - 1 - j];
+//         array[i, n - 1 - j] = temp;
+//     }
+//     }
+
+//     public static void PrintResult(int[,] numbers)
+//     {
+//         //Напишите свое решение здесь
+//         SwapFirstLastRows(numbers);
+//         PrintArray(numbers);
+
+//     }
+// }
+
+// //Не удаляйте и не меняйте класс Answer!
+// class Answer
+// {
+//     public static void Main(string[] args)
+//     {
+//         int[,] numbers;
+
+//         if (args.Length >= 1)
+//         {
+//             // Предполагается, что строки разделены запятой и пробелом, а элементы внутри строк разделены пробелом
+//             string[] rows = args[0].Split(',');
+
+//             int rowCount = rows.Length;
+//             int colCount = rows[0].Trim().Split(' ').Length;
+
+//             numbers = new int[rowCount, colCount];
+
+//             for (int i = 0; i < rowCount; i++)
+//             {
+//                 string[] rowElements = rows[i].Trim().Split(' ');
+
+//                 for (int j = 0; j < colCount; j++)
+//                 {
+//                     if (int.TryParse(rowElements[j], out int result))
+//                     {
+//                         numbers[i, j] = result;
+//                     }
+//                     else
+//                     {
+//                         Console.WriteLine($"Error parsing element {rowElements[j]} to an integer.");
+//                         return;
+//                     }
+//                 }
+//             }
+//         }
+//         else
+//         {
+//             // Если аргументов на входе нет, используем примерный массив
+//             numbers = new int[,]
+//             {
+//                 {1, 2, 3, 4},
+//                 {5, 6, 7, 8},
+//                 {9, 10, 11, 12}
+//             };
+//         }
+//         UserInputToCompileForTest.PrintResult(numbers);
+//     }
+// }
+
+
+
+// using System;
+
+// //Тело класса будет написано студентом. Класс обязан иметь статический метод PrintResult()
+// class UserInputToCompileForTest
+// { 
+// // Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+
+// // Поиск элемента по позициям
+// //     public static int FindElementByPosition(int[,] array, int x, int y)
+// //     {
+// //         //Напишите свое решение здесь
+// //     }
+
+// // // Проверка позиций на вхождение в массив
+// //     public static bool ValidatePosition(int[,] array, int x, int y)
+// //     {
+// //         //Напишите свое решение здесь
+// //     }
+
+//     public static void PrintResult(int[,] numbers, int x, int y)
+//     {
+//         //Напишите свое решение здесь
+//                 if (x > numbers.GetLength(0))
+//         {
+//                     Console.WriteLine("Позиция по рядам выходит за пределы массива");
+//         }
+//                 if (y > numbers.GetLength(1))
+//         {
+//                     Console.WriteLine("Позиция по колонкам выходит за пределы массива");
+//         }
+//         else
+//         {
+//                     Console.WriteLine(numbers[x-1,y-1]);
+//         }
+//     }
+// }
+
+// //Не удаляйте и не меняйте класс Answer!
+// class Answer
+// {
+//     public static void Main(string[] args)
+//     {   
+//         int[,] array;
+
+//         int x, y;
+
+//         if (args.Length >= 3)
+//         {
+//             // Предполагается, что строки разделены запятой и пробелом, а элементы внутри строк разделены пробелом
+//             string[] rows = args[0].Split(',');
+
+//             int rowCount = rows.Length;
+//             int colCount = rows[0].Trim().Split(' ').Length;
+
+//             array = new int[rowCount, colCount];
+
+//             for (int i = 0; i < rowCount; i++)
+//             {
+//                 string[] rowElements = rows[i].Trim().Split(' ');
+
+//                 for (int j = 0; j < colCount; j++)
+//                 {
+//                     if (int.TryParse(rowElements[j], out int result))
+//                     {
+//                         array[i, j] = result;
+//                     }
+//                     else
+//                     {
+//                         Console.WriteLine($"Error parsing element {rowElements[j]} to an integer.");
+//                         return;
+//                     }
+//                 }
+//             }
+
+//             // Парсинг x и y из аргументов
+//             if (int.TryParse(args[1], out x) && int.TryParse(args[2], out y))
+//             {
+//                 // Теперь у вас есть двумерный массив "array" и координаты x и y
+//                 UserInputToCompileForTest.PrintResult(array, x, y);
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Error parsing x or y to an integer.");
+//             }
+//         }
+//         else
+//         {
+
+//             // Если аргументов на входе нет, используем примерный массив
+//             array = new int[,]
+//             {
+//                 {1, 2, 3, 4},
+//                 {5, 6, 7, 8},
+//                 {9, 10, 11, 12}
+//             };
+//             x = 2;
+//             y = 2;
+
+//             UserInputToCompileForTest.PrintResult(array, x, y);
+
+//         }                
+//     }
+// }
+
+
+
+// using System;
+
+// class UserInputToCompileForTest
+// {
+//     // Печать массива
+//     public static void PrintArray(int[,] array)
+//     {
+//         for (int i = 0; i < array.GetLength(0); i++)
+//         {
+//             for (int j = 0; j < array.GetLength(1); j++)
+//             {
+//                 Console.Write($"{array[i, j]}  ");
+//             }
+//             Console.WriteLine(" ");
+//         }
+//     }
+
+//     // Обмен первой с последней строкой
+//     public static int[,] SwapFirstLastRows(int[,] array)
+//     {
+//         int n = array.GetLength(0) - 1;
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             int temp = array[0, j];
+//             array[0, j] = array[n, j];
+//             array[n, j] = temp;
+//         }
+//         return array;
+//     }
+
+//     // Обмен элементами массива
+//     public static void SwapItems(int[,] array, int i)
+//     {
+//         int n = array.GetLength(1);
+//         for (int j = 0; j < n / 2; j++)
+//         {
+//             int temp = array[i, j];
+//             array[i, j] = array[i, n - 1 - j];
+//             array[i, n - 1 - j] = temp;
+//         }
+//     }
+
+//     public static void PrintResult(int[,] numbers)
+//     {
+//         SwapFirstLastRows(numbers);
+//         PrintArray(numbers);
+//     }
+// }
+
+// class Answer
+// {
+//     public static void Main(string[] args)
+//     {
+//         int[,] numbers;
+
+//         if (args.Length >= 1)
+//         {
+//             // Предполагается, что строки разделены запятой и пробелом, а элементы внутри строк разделены пробелом
+//             string[] rows = args[0].Split(',');
+
+//             int rowCount = rows.Length;
+//             int colCount = rows[0].Trim().Split(' ').Length;
+
+//             numbers = new int[rowCount, colCount];
+
+//             for (int i = 0; i < rowCount; i++)
+//             {
+//                 string[] rowElements = rows[i].Trim().Split(' ');
+
+//                 for (int j = 0; j < colCount; j++)
+//                 {
+//                     if (int.TryParse(rowElements[j], out int result))
+//                     {
+//                         numbers[i, j] = result;
+//                     }
+//                     else
+//                     {
+//                         Console.WriteLine($"Error parsing element {rowElements[j]} to an integer.");
+//                         return;
+//                     }
+//                 }
+//             }
+//         }
+//         else
+//         {
+//             // Если аргументов на входе нет, используем примерный массив
+//             numbers = new int[,]
+//             {
+//                 {1, 2, 3, 4},
+//                 {5, 6, 7, 8},
+//                 {9, 10, 11, 12}
+//             };
+//         }
+//         UserInputToCompileForTest.PrintResult(numbers);
+//     }
+// }
+
+
+
+// using System;
+
+// class Program
+// {
+//     static void PrintNumbersInRange(int m, int n)
+//     {
+//         if (m <= n)
+//         {
+//             Console.WriteLine(m);
+//             PrintNumbersInRange(m + 1, n);
+//         }
+//     }
+
+//     static void Main(string[] args)
+//     {
+//         Console.Write("Введите значение M: ");
+//         int m = int.Parse(Console.ReadLine());
+
+//         Console.Write("Введите значение N: ");
+//         int n = int.Parse(Console.ReadLine());
+
+//         Console.WriteLine($"Натуральные числа в промежутке от {m} до {n}:");
+//         PrintNumbersInRange(m, n);
+//     }
+// }
+
+
+
+// using System;
+
+// class Program
+// {
+//     static int Ackermann(int m, int n)
+//     {
+//         if (m == 0)
+//         {
+//             return n + 1;
+//         }
+//         else if (n == 0)
+//         {
+//             return Ackermann(m - 1, 1);
+//         }
+//         else
+//         {
+//             return Ackermann(m - 1, Ackermann(m, n - 1));
+//         }
+//     }
+
+//     static void Main(string[] args)
+//     {
+//         Console.Write("Введите значение m: ");
+//         int m = int.Parse(Console.ReadLine());
+
+//         Console.Write("Введите значение n: ");
+//         int n = int.Parse(Console.ReadLine());
+
+//         Console.WriteLine($"Результат функции Аккермана для m={m}, n={n}: {Ackermann(m, n)}");
+//     }
+// }
+
 using System;
 
 class Program
 {
-    static void Main()
+    static void PrintArrayReversed(int[] arr, int index)
+    {
+        if (index >= 0)
+        {
+            Console.Write(arr[index] + " ");
+            PrintArrayReversed(arr, index - 1);
+        }
+    }
+
+    static void Main(string[] args)
     {
         int[] array = { 1, 2, 3, 4, 5 };
 
-        Console.WriteLine("Исходный массив:");
-        PrintArray(array);
-
-        ReverseArray(array);
-
-        Console.WriteLine("\n Перевёрнутый массив:");
-        PrintArray(array);
-    }
-
-    static void ReverseArray(int[] array)
-    {
-        int left = 0;
-        int right = array.Length - 1;
-
-        while (left < right)
-        {
-            int temp = array[left];
-            array[left] = array[right];
-            array[right] = temp;
-
-            left++;
-            right--;
-        }
-    }
-
-    static void PrintArray(int[] array)
-    {
-        foreach (int num in array)
-        {
-            Console.Write(num + " ");
-        }
-        Console.WriteLine();
+        Console.WriteLine("Элементы массива в обратном порядке:");
+        PrintArrayReversed(array, array.Length - 1);
     }
 }
